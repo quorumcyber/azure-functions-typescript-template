@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "schedule": "0 * * * * *",
+      "name": "testTimer",
+      "type": "timerTrigger",
+      "direction": "in"
+    }
+  ],
+  "scriptFile": "../dist/hello_world_timer_test/index.js"
+}

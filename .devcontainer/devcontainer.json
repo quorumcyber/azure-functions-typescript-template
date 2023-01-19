@@ -1,0 +1,14 @@
+{
+  "name": "Azure Functions & Node.js",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [7071],
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-azuretools.vscode-azurefunctions", "dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  },
+  "postCreateCommand": "npm install",
+  "remoteUser": "node"
+}

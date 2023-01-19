@@ -1,0 +1,36 @@
+{
+  "name": "azure-functions-typescript-template",
+  "version": "1.0.0",
+  "description": "Template for TypeScript Azure Functions projects",
+  "author": "Fraser Muir",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "eslint . --ext .ts",
+    "blob": "azurite-blob --silent --location=./dist/.azurite",
+    "prestart": "npm run build",
+    "start:host": "func start",
+    "start": "concurrently --names \"func,tsc,blob\" -c \"auto\" -k \"npm run start:host\" \"npm run watch\" \"npm run blob\"",
+    "build:production": "npm run prestart && npm prune --production",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "transform": {}
+  },
+  "devDependencies": {
+    "@azure/functions": "^3.5.0",
+    "@types/jest": "^29.2.6",
+    "@types/node": "^16.18.11",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "azure-functions-core-tools": "^4.x",
+    "azurite": "^3.21.0",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.32.0",
+    "jest": "^29.3.1",
+    "prettier": "^2.8.3",
+    "ts-jest": "^29.0.5",
+    "typescript": "^4.9.4"
+  }
+}

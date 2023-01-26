@@ -16,7 +16,8 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "transform": {}
+    "transform": {},
+    "testPathIgnorePatterns": ["dist", "node_modules"]
   },
   "devDependencies": {
     "@azure/functions": "^3.5.0",

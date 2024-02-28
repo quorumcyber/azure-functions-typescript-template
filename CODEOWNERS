@@ -1,0 +1,5 @@
+# Codeowners for {enter_Repo_Name} - everyone who's a member of the below
+# will be auto-included in pull requests
+
+# QC Dev team - auto include in all PRs
+*   @quorumcyber-clarity/dev

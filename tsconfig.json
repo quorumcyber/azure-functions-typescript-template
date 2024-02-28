@@ -1,19 +1,29 @@
 {
+  "files": [".eslintrc.cjs"],
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022"],
+    "types": ["vitest/globals"],
+
     "allowJs": true,
-    "checkJs": true,
-    "sourceMap": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "Node16",
+    "module": "CommonJS",
+    "target": "ES6",
     "moduleResolution": "Node",
+    "composite": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+
+    "strict": true,
+    "strictNullChecks": true,
     "resolveJsonModule": true,
-    "incremental": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "outDir": "dist",
-    "rootDir": "."
-  }
+    "exactOptionalPropertyTypes": true,
+
+    "outDir": "dist"
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist", "functions"]
 }

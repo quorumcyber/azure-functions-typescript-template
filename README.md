@@ -14,3 +14,19 @@ We use a packaged called `concurrently` to run `tsc`, `func start` and `azurite`
 Tests are run using `jest` and `ts-jest` and can be run using `npm test`.
 
 Scripts can be run using `ts-node [path-to-file]`. The `ts-node` package should be automatically installed after container creation, but if not, you can install it using `npm install -g ts-node typescript '@types/node'`.
+
+## Deployment Pipelines
+
+To setup the deployment pipelines there are some simple find / replace steps to follow globally:
+
+ - Rename `INSERT_REPO_NAME` to the name of the repository
+ - Rename `INSERT_DEV_PUBLISH_PROFILE_NAME` to the name of the publish profile in Azure, i.e. `dev-my-test-fa`
+ - Rename `INSERT_STG_PUBLISH_PROFILE_NAME` to the name of the publish profile in Azure, i.e. `stg-my-test-fa`
+ - Rename `INSERT_PROD_PUBLISH_PROFILE_NAME` to the name of the publish profile in Azure, i.e. `prod-my-test-fa`
+ - Rename `INSERT_DEV_APP_NAME` to the name of the app in dev in Azure, i.e. `dev-my-test-fa`
+ - Rename `INSERT_STG_APP_NAME` to the name of the app in dev in Azure, i.e. `stg-my-test-fa`
+ - Rename `INSERT_PROD_APP_NAME` to the name of the app in dev in Azure, i.e. `prod-my-test-fa`
+
+## Environment Variables
+
+Search for "Application environment variables" and populate the environment variables with the correct values, ensuring that the `local.settings.json` file is updated with the same values, as well as the `EXAMPLE.local.settings.json` file.

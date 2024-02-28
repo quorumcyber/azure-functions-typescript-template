@@ -1,0 +1,76 @@
+name: Validate PR
+on:
+  - pull_request
+  - workflow_dispatch
+jobs:
+  formatting-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: quorumcyber/npm-login-and-install@main
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          settings: ${{ secrets.PR_LOCAL_SETTINGS }}
+          repo: 'INSERT_REPO_NAME'
+      - name: Check Formatting
+        run: npm run format:check
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: quorumcyber/npm-login-and-install@main
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          settings: ${{ secrets.PR_LOCAL_SETTINGS }}
+          repo: 'INSERT_REPO_NAME'
+      - name: ESLint
+        run: npm run lint
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: quorumcyber/npm-login-and-install@main
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          settings: ${{ secrets.PR_LOCAL_SETTINGS }}
+          repo: 'INSERT_REPO_NAME'
+      - name: Typecheck
+        run: npm run typecheck
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: quorumcyber/npm-login-and-install@main
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          settings: ${{ secrets.PR_LOCAL_SETTINGS }}
+          repo: 'INSERT_REPO_NAME'
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm run coverage
+      - if: ${{ github.base_ref == 'main' }}
+        name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: quorumcyber/npm-login-and-install@main
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          settings: ${{ secrets.PR_LOCAL_SETTINGS }}
+          repo: 'INSERT_REPO_NAME'
+      - name: Build
+        run: npm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist

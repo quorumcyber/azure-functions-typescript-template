@@ -1,9 +1,0 @@
-{
-  "name": "Azure Functions & Node.js",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "forwardPorts": [7071],
-  "postCreateCommand": "npm install",
-  "remoteUser": "node"
-}

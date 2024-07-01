@@ -1,8 +1,8 @@
 {
-  "name": "azure-functions-typescript-template",
+  "name": "smi-jira-alert-integration",
   "version": "2.0.0",
-  "description": "Template for TypeScript Azure Functions projects",
-  "author": "Fraser Muir",
+  "description": "A simple Alert conversion and data fetch flow from Azure to Jira",
+  "author": "Jacob Connell",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
@@ -22,11 +22,18 @@
     "checks": "npm run lint && npm run format:check && npm run test && npm run build"
   },
   "dependencies": {
+    "@atlaskit/adf-utils": "^19.3.0",
+    "@qcyber/azure": "^2.0.22",
+    "axios": "^1.7.2",
+    "azure-functions-core-tools": "^4.0.5907",
+    "jira-client": "^8.2.2",
+    "winston": "^3.13.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@azure/functions": "^4.3.0",
+    "@azure/functions": "^3.5.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/jira-client": "^7.1.9",
     "@types/node": "^20.11.21",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",

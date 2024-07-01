@@ -1,12 +1,12 @@
 {
   "bindings": [
     {
-      "authLevel": "anonymous",
+      "authLevel": "function",
       "type": "httpTrigger",
       "direction": "in",
-      "route": "test",
+      "route": "alert/{project}",
       "name": "req",
-      "methods": ["get"]
+      "methods": ["post"]
     },
     {
       "type": "http",
@@ -14,5 +14,5 @@
       "name": "$return"
     }
   ],
-  "scriptFile": "../dist/hello_world_http_test/index.js"
+  "scriptFile": "../dist/smi_http_alert_webhook/index.js"
 }

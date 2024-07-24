@@ -24,8 +24,7 @@ http://api.quorumcyber.com/api/smi/alert/{alertType}?code={functionKey}
 
 ### Flow Diagram
 
-![image](https://github.com/quorumcyber/azure-functions-typescript-template/assets/149156952/ff8c277a-8844-4d1c-bfe6-58be63c1a9a9)
-
+![image](https://github.com/quorumcyber/azure-functions-typescript-template/assets/149156952/0c290fc7-ee38-41f7-8689-276e469066f0)
 
 
 ### Example Jira Output

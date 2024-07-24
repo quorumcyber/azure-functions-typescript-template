@@ -1,27 +1,32 @@
-# Security Metrics - Azure Alert -> Jira Function App
+# Azure Functions Typescript Template
 
-## Purpose
+This repository is an example setup for Typescript Azure Functions projects.
 
-This app takes an Azure alert function app webhook with the CommonAlertSchema applied and completed the following actions:
+`tsc` will complile the typescript files into a `dist` folder that is ignored by git.
+In order for the functions to reference the compiled files, the `scriptFile` property in its `function.json` needs to point to the compiled `index.js` inside of the `dist` folder.
 
-- Query and tabulate alert data from the API details in the alert.
-- Parse alert details and results into ADF format.
-- Log the alert and results as an intenral ticket in the project define in the webhook.
+We use the `azurite` package to run a local Azure Storage emulator so event-based triggers such as timers can store locks properly in a local dev environment.
 
-## Error Logging
+When running the app locally, `tsc` will be run in watch mode to automatically recompile the project when changes are made. Since the entire project will then also exist inside the `dist` folder, imports will still resolve inside the built directory meaning changes should be reflected automatically when developing locally using `func start`.
 
-This app has structured error logging in place. It is important any implementation of this sets up a secondary alert method that fires on any Error level alerts to identify failures in this connector.
+We use a packaged called `concurrently` to run `tsc`, `func start` and `azurite` in parallel for local development, so you only need to run `npm start` to run the project locally. 
 
-Common failures may occur when an Azure Alert is not setup to use the CommonAlertSchema or when an incorrect Project key is defined.
+Tests are run using `jest` and `ts-jest` and can be run using `npm test`.
 
-### Predefine Projects
+Scripts can be run using `ts-node [path-to-file]`. The `ts-node` package should be automatically installed after container creation, but if not, you can install it using `npm install -g ts-node typescript '@types/node'`.
 
-All projects processed using this app must be predefined including the Project Key, IssueType ID and Alert Type details. Once defined, the AlertType should be included as a Parameter in the webhook to trigger the correct alert.
+## Deployment Pipelines
 
-### Webhook Format
+To setup the deployment pipelines there are some simple find / replace steps to follow globally:
 
-http://api.quorumcyber.com/api/smi/alert/{alertType}?code={functionKey}
+ - Rename `INSERT_REPO_NAME` to the name of the repository
+ - Rename `INSERT_DEV_PUBLISH_PROFILE_NAME` to the name of the publish profile in Azure, i.e. `dev-my-test-fa`
+ - Rename `INSERT_STG_PUBLISH_PROFILE_NAME` to the name of the publish profile in Azure, i.e. `stg-my-test-fa`
+ - Rename `INSERT_PROD_PUBLISH_PROFILE_NAME` to the name of the publish profile in Azure, i.e. `prod-my-test-fa`
+ - Rename `INSERT_DEV_APP_NAME` to the name of the app in dev in Azure, i.e. `dev-my-test-fa`
+ - Rename `INSERT_STG_APP_NAME` to the name of the app in dev in Azure, i.e. `stg-my-test-fa`
+ - Rename `INSERT_PROD_APP_NAME` to the name of the app in dev in Azure, i.e. `prod-my-test-fa`
 
-### Example Jira Output
+## Environment Variables
 
-### Flow Diagram
+Search for "Application environment variables" and populate the environment variables with the correct values, ensuring that the `local.settings.json` file is updated with the same values, as well as the `EXAMPLE.local.settings.json` file.

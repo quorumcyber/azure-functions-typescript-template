@@ -23,15 +23,6 @@ if (typeof process.env.NODEENV === 'undefined') {
  */
 const envSchema = z.object({
   NODEENV: z.string(),
-  JiraToken: z.string(),
-  JiraUrl: z.string(),
-  JiraUsername: z.string(),
-  LogLevel: z.string(),
-  AzureQCClientId: z.string(),
-  AzureQCClientSecret: z.string(),
-  AzureQCTenantId: z.string(),
-  APPLICATIONINSIGHTS_CONNECTION_STRING: z.string(),
-  CloudRole: z.string(),
 });
 
 let envVariables = {} as z.infer<typeof envSchema>;

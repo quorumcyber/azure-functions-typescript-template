@@ -22,12 +22,6 @@ All projects processed using this app must be predefined including the Project K
 
 http://api.quorumcyber.com/api/smi/alert/{alertType}?code={functionKey}
 
-### Flow Diagram
-
-![image](https://github.com/quorumcyber/azure-functions-typescript-template/assets/149156952/0c290fc7-ee38-41f7-8689-276e469066f0)
-
-
 ### Example Jira Output
 
-![image](https://github.com/quorumcyber/azure-functions-typescript-template/assets/149156952/94a515de-d491-4556-b5c5-dd83e606b43e)
-
+### Flow Diagram

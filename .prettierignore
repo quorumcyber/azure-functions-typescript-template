@@ -1,0 +1,7 @@
+.vscode
+vite.config.ts
+eslintrc.cjs
+*.d.ts
+node_modules
+dist
+coverage
